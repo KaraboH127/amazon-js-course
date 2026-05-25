@@ -46,11 +46,40 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button class="add-to-cart-button button-primary js-add-to-cart"
+            data-product-id="${product.id}">
             Add to Cart
           </button>
         </div>
   `
 })
 
+// Renders products into the products grid in amazon.html
 document.querySelector('.js-products-grid').innerHTML = productsHtml
+
+// Adds event listener to add-to-cart button
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const productId = button.dataset.productId;
+
+    // Checks if product is already in cart
+    let matchingItem;
+
+    cart.forEach((item) => {
+      if (productId === item.productId) {
+        matchingItem = item;
+      }
+    });
+
+      if (matchingItem) {
+        matchingItem.quantity += 1;
+      } else {
+          cart.push({
+          productName: productId,
+          quantity: 1
+        });
+      }
+
+    console.log(cart);
+  });
+})   
