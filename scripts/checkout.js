@@ -5,16 +5,19 @@ import {formatCurrency} from './utils/money.js'
 
 let cartSummaryHTML = '';
 
-cart.forEach((cartItem) => {
-  const productId = cartItem.productId;
+if (cart && Array.isArray(cart) && cart.length > 0) {
+  cart.forEach((cartItem) => {
+    const productId = cartItem.productId;
 
-  let matchingProduct;
+    let matchingProduct;
 
-  products.forEach((product) => {
-    if (product.id === productId) {
-      matchingProduct = product;
-    }
-  })
+    products.forEach((product) => {
+      if (product.id === productId) {
+        matchingProduct = product;
+      }
+    });
+
+    if (!matchingProduct) return;
 
     cartSummaryHTML += `
     <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
@@ -93,7 +96,8 @@ cart.forEach((cartItem) => {
             </div>
           </div>
   `
-})
+});
+}
 
 document.querySelector('.js-order-summary').innerHTML = cartSummaryHTML;
 
