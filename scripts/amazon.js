@@ -32,7 +32,7 @@ products.forEach((product) => {
             <div class="product-quantity-container">
               <select>
                 <option selected value="1">1</option>
-                <option value="2">2</option>
+                b<option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
                 <option value="5">5</option>
@@ -43,6 +43,8 @@ products.forEach((product) => {
                 <option value="10">10</option>
               </select>
             </div>
+
+            ${product.extraInfoHTML()}
 
             <div class="product-spacer"></div>
 
